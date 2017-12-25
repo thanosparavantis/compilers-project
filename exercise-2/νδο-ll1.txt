@@ -1,2 +1,8 @@
 first - ok
 follow - ok
+empty - ok
+lookahead - ok
+apodeixtike oti einai LL(1)
+
+TODO: 
+Na kanoume ton sintaktiko analiti

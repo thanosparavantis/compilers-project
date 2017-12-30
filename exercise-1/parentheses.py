@@ -40,38 +40,48 @@ def main(args):
     # f(k1, $, e) = { (k2, e) }
 
     stack = ["$"]
+    messages = []
     state = "k1"
 
     while True:
         char = contents[0] if len(contents) > 0 else ""
-        print("Now: " + char)
         if char == "(":
             contents = contents[1:]
-            print("Contents: " + contents)
+            messages.append("Character: " + char)
+            messages.append("Input: " + contents)
             stack.append(char)
             state = "k1"
-            print("PUSH: " + str(stack))
+            messages.append("PUSH: " + str(stack) + " -> State: " + state)
         elif stack[-1] == "(" and char == ")":
             contents = contents[1:]
-            print("Contents: " + contents)
+            messages.append("Character: " + char)
+            messages.append("Input: " + contents)
             stack.pop()
             state = "k1"
-            print("POP: " + str(stack))
+            messages.append("POP: " + str(stack) + " -> State: " + state)
         elif state == "k1" and stack[-1] == "$" and char == "":
             contents = contents[1:]
-            print("Contents: " + contents)
+            messages.append("Character: " + char)
+            messages.append("Input: " + contents)
             state = "k2"
-            print("END: " + str(stack))
+            messages.append("END: " + str(stack) + " -> State: " + state)
             break
         else:
-            print("Contents: " + contents)
-            print("BREAK: " + str(stack))
+            messages.append("Character: " + char)
+            messages.append("Input: " + contents)
+            messages.append("BREAK: " + str(stack) + " -> State: " + state)
             break
 
     if stack[-1] == "$" and state == "k2":
         print("YES")
     else:
         print("NO")
+
+    choice = input("Show steps (y/n)? ").lower()
+
+    if choice == "y" or choice == "yes":
+        for m in messages:
+            print(m)
 
 
 def formatInput(string):

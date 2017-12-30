@@ -3,6 +3,8 @@ follow - ok
 empty - ok
 lookahead - ok
 apodeixtike oti einai LL(1)
+==
+O parser einai sto fakelo ll1_parser
 
 TODO: 
 Na kanoume ton sintaktiko analiti

@@ -1,4 +1,5 @@
 import sys
+import re
 
 
 def main(args):
@@ -24,7 +25,7 @@ def main(args):
 
     # Format input
 
-    contents = formatInput(contents)
+    contents = format_input(contents)
 
     # Setup push-down automaton
     # K = { k0, k1, k2 }
@@ -84,8 +85,10 @@ def main(args):
             print(m)
 
 
-def formatInput(string):
-    return string.replace('\n', ' ').replace('\r', '').replace(' ', '')
+def format_input(string):
+    string = string.replace('\n', ' ').replace('\r', '').replace(' ', '')
+    string = re.sub("[^()]", "", string)
+    return string
 
 
 if __name__ == "__main__":

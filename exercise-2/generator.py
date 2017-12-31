@@ -16,7 +16,7 @@ def main():
     print(ekfrasi + " =>")
 
     step_counter = 1
-    step_limit = 10
+    step_limit = 50 # could be 10, 20 etc.
 
     while "<ekfrasi>" in ekfrasi:
         step_counter += 1

@@ -19,9 +19,9 @@ def main():
     step_limit = 50 # could be 10, 20 etc.
 
     while "<ekfrasi>" in ekfrasi:
-        step_counter += 1
         if step_counter >= step_limit:
             break
+        step_counter += 1
         ekfrasi_rand = random.choice(rules["ekfrasi"])
         ekfrasi = ekfrasi.replace("<ekfrasi>", ekfrasi_rand, 1)
         print(ekfrasi + " =>")
@@ -29,9 +29,9 @@ def main():
     # Second step
 
     while "<oros>" in ekfrasi:
-        step_counter += 1
         if step_counter >= step_limit:
             break
+        step_counter += 1
         oros_rand = random.choice(rules["oros"])
         ekfrasi = ekfrasi.replace("<oros>", oros_rand, 1)
         print(ekfrasi + " =>")
@@ -39,9 +39,9 @@ def main():
     # Third step
 
     while "<paragontas>" in ekfrasi:
-        step_counter += 1
         if step_counter >= step_limit:
             break
+        step_counter += 1
         paragontas_rand = random.choice(rules["paragontas"])
         ekfrasi = ekfrasi.replace("<paragontas>", paragontas_rand, 1)
         if "<" in ekfrasi:

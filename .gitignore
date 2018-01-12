@@ -360,3 +360,14 @@ __pycache__/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+exercise-5/lex\.yy\.c
+
+exercise-5/a\.exe
+
+exercise-5/a\.out
+
+exercise-4/lex\.yy\.c
+
+exercise-4/a\.exe
+
+exercise-4/a\.out

@@ -37,7 +37,11 @@ public class LL1_Parser {
         String token = this.read();
         String top = null, rule = null;
 
-        System.out.println("Stack   |#| Input    |#| Array Element    |#| Production   ");
+        //System.out.println("Stack   |#| Input    |#| Array Element    |#| Production   ");
+        String leftAlignFormat = "| %-29s | %-24s | %-32s | %-29s |%n";
+        System.out.format("+-------------------------------+--------------------------+----------------------------------+-------------------------------+%n");
+        System.out.format("| Stack                         | Input                    | Array Element                    | Production                    |%n");
+        System.out.format("+-------------------------------+--------------------------+----------------------------------+-------------------------------+%n");
 
         do {
             top = this.peekOfStack();
@@ -61,8 +65,9 @@ public class LL1_Parser {
                 }
             }
 
-            System.out.println(this.parserStack+"   |#| " + this.input.substring(this.indexOfInput) + "    |#| syntaxArray(,)    |#| XXX -> " + rule + "  ");
-            System.out.println("---------------------------------------------------------------------------------------------");
+            //System.out.println(this.parserStack+"   |#| " + this.input.substring(this.indexOfInput) + "    |#| syntaxArray(,)    |#| XXX -> " + rule + "  ");
+            System.out.format(leftAlignFormat, this.parserStack, this.input.substring(this.indexOfInput), "syntaxArray(,) ", "XXX -> " + rule);
+            System.out.format("+-------------------------------+--------------------------+----------------------------------+-------------------------------+%n");
 
         } while(true);
     }

@@ -5,10 +5,7 @@ space [" "\t]
 new_line \n
 anything_else .
 %%
-{reserved_keyword}{space}({space}*{identifier}(","{space}*{identifier})*":"{space}*{variable_type}";"({new_line})?)+ {
+{reserved_keyword}{space}({space}*{identifier}(","{space}*{identifier})*":"{space}*{variable_type}";"({new_line})?)+({new_line})$ {
     printf("\nThe following variable declaration is valid! \n%s", yytext);
 }
-
-{anything_else} {}
-
 %%

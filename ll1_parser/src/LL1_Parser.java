@@ -35,9 +35,8 @@ public class LL1_Parser {
         this.pushInStack("S");
 
         String token = this.read();
-        String top = null, rule = null;
+        String top = null, rule = null, productionStr = null, arrayElement = null;
 
-        //System.out.println("Stack   |#| Input    |#| Array Element    |#| Production   ");
         String leftAlignFormat = "| %-29s | %-24s | %-32s | %-29s |%n";
         System.out.format("+-------------------------------+--------------------------+----------------------------------+-------------------------------+%n");
         System.out.format("| Stack                         | Input                    | Array Element                    | Production                    |%n");
@@ -51,6 +50,7 @@ public class LL1_Parser {
                 if (top.equals(token) && !token.equals("$")) {
                     this.popOutOfStack();
                     token = this.read();
+                    top ="";
                 } else if (top.equals(token) && top.equals("$")) {
                     System.out.println("The given expression is valid LL1");
                     break;
@@ -65,8 +65,15 @@ public class LL1_Parser {
                 }
             }
 
-            //System.out.println(this.parserStack+"   |#| " + this.input.substring(this.indexOfInput) + "    |#| syntaxArray(,)    |#| XXX -> " + rule + "  ");
-            System.out.format(leftAlignFormat, this.parserStack, this.input.substring(this.indexOfInput), "syntaxArray(,) ", "XXX -> " + rule);
+            if (top.equals("")) {
+                productionStr = "";
+                arrayElement = "";
+            } else {
+                productionStr =  top + "-> " + rule;
+                arrayElement = "syntaxArray("+ top +", " + token + ") ";
+            }
+
+            System.out.format(leftAlignFormat, this.parserStack, this.input.substring(this.indexOfInput), arrayElement, productionStr);
             System.out.format("+-------------------------------+--------------------------+----------------------------------+-------------------------------+%n");
 
         } while(true);

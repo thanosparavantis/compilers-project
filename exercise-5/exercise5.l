@@ -46,6 +46,15 @@ logger(char *msg) {
     }
 
     char *a = split_msg[2];
+    int arr_len = sizeof(a) / sizeof(a[0]);
+
+    for (int i = 0; i < arr_len - 1; i++) { 
+        for (int j = i + 1; j < arr_len; j++) {
+            if (a[i] == a[j] && a[i] != NULL && a[j] != NULL) {
+                valid_name = 0;
+            }
+        }
+    }
 
     if (valid_name == 1) {
         printf("%s: είναι ρήμα.\n", split_msg[0]);

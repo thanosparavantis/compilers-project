@@ -19,6 +19,10 @@ letters     [A-E]
     logger(yytext);
 }
 
+{verb}" "({corner})" "({letters}{1})$ {
+    logger(yytext);
+}
+
 {verb}" "{line}" "({letters}{2})$ {
     logger(yytext);
 }
@@ -57,9 +61,9 @@ logger(char *msg) {
     }
 
     if (valid_name == 1) {
-        printf("%s: είναι ρήμα.\n", split_msg[0]);
-        printf("%s: είναι γεωμετρική οντότητα\n", split_msg[1]);
-        printf("%s: είναι όνομα γεωμετρική οντότητα\n", split_msg[2]);
+        printf("%s: einai rhma.\n", split_msg[0]);
+        printf("%s: einai gewmetrikh ontothta\n", split_msg[1]);
+        printf("%s: einai onoma gewmetrikhs ontothtas\n", split_msg[2]);
     }
 }
 

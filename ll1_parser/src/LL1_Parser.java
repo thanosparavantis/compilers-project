@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -52,7 +53,7 @@ public class LL1_Parser {
                     token = this.read();
                     top ="";
                 } else if (top.equals(token) && top.equals("$")) {
-                    System.out.println("The given expression is valid LL1");
+                    System.out.println("The string has been recognized!");
                     break;
                 }
             } else {
@@ -136,7 +137,7 @@ public class LL1_Parser {
             i++;
         }
 
-        this.errorLogger(inputString + "is not terminal symbol");
+        this.errorLogger(inputString + " is not terminal symbol");
         return -1;
     }
 
@@ -151,7 +152,7 @@ public class LL1_Parser {
             i++;
         }
 
-        this.errorLogger(inputString + "is terminal symbol");
+        this.errorLogger(inputString + " is terminal symbol");
         return -1;
     }
 
@@ -168,8 +169,38 @@ public class LL1_Parser {
     }
 
     public static void main(String[] args) {
-        // Test following expression: [[y:x]+[x:y]]
-        LL1_Parser parser = new LL1_Parser("[[y:x]+[x:y]]$");
-        parser.parsingAlgorithm();
+
+        Scanner sc;
+        int menuSelection;
+        LL1_Parser parser;
+        System.out.println("================ MENU ================");
+        System.out.println("1. Execute the string [[y:x]+[x:y]]");
+        System.out.println("2. Type a string of your choice");
+        System.out.println("======================================");
+
+        do {
+            System.out.println("Select 1 or 2");
+            sc = new Scanner(System.in);
+            try {
+                menuSelection = sc.nextInt();
+            }catch (InputMismatchException e) {
+                menuSelection = 0;
+            }
+        } while ((menuSelection < 1) || (menuSelection > 2));
+        if (menuSelection == 1) {
+            // Test following expression: [[y:x]+[x:y]]
+            parser = new LL1_Parser("[[y:x]+[x:y]]$");
+        } else {
+            System.out.println("Type a string");
+            String userInput = sc.next();
+            parser = new LL1_Parser(userInput + "$");
+        }
+
+        try {
+            parser.parsingAlgorithm();
+        } catch (RuntimeException e) {
+            System.out.println("The string has not been recognized!");
+        }
+
     }
 }

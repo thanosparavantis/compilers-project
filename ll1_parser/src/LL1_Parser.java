@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Stack;
@@ -39,7 +38,7 @@ public class LL1_Parser {
         this.pushInStack("S");
 
         String token = this.read();
-        String top = null, rule = null, productionStr = null, arrayElement = null;
+        String top = null, rule = null;
 
         System.out.format("+-------------------------------+--------------------------+----------------------------------+-------------------------------+%n");
         System.out.format("| Stack                         | Input                    | Array Element                    | Production                    |%n");
@@ -52,6 +51,7 @@ public class LL1_Parser {
             if (this.isTerminal(top)) {
 
                 if (top.equals(token) && !token.equals("$")) {
+
                     this.printTableRow();
                     this.popOutOfStack();
                     token = this.read();
@@ -128,15 +128,6 @@ public class LL1_Parser {
         return rule;
     }
 
-    private String returnRuleFromArray(String nonTerminal, String terminal) {
-        int arrayRow = this.getNonTermSymbolIndex(nonTerminal);
-        int arrayCol = this.getTermSymbolIndex(terminal);
-
-        String rule = this.syntaxArray[arrayRow][arrayCol];
-
-        return rule;
-    }
-
     // Get terminal symbol index
     private int getTermSymbolIndex(String inputString) {
         int i = 0;
@@ -167,6 +158,7 @@ public class LL1_Parser {
         return -1;
     }
 
+    // Print table row
     private void printTableRow() {
         String stack = this.parserStack.toString()
                 .substring(0, this.parserStack.toString().length() - 1)
@@ -177,6 +169,8 @@ public class LL1_Parser {
         System.out.format(leftAlignFormat, stack, this.input.substring(this.indexOfInput), "", "");
         System.out.format("+-------------------------------+--------------------------+----------------------------------+-------------------------------+%n");
     }
+
+    // Print table row
     private void printTableRow(String top, String rule, String token){
         String  productionStr =  top + "-> " + (rule.equals("") ? "ε" : rule),
                 arrayElement = "syntaxArray("+ top +", " + token + ") ",
@@ -190,16 +184,15 @@ public class LL1_Parser {
         System.out.format("+-------------------------------+--------------------------+----------------------------------+-------------------------------+%n");
     }
 
-    //private void printTableRow(){}
-
+    // Returns the element at the peek of the stack
     private String peekOfStack() {
         return this.parserStack.peek();
     }
 
-    private String popOutOfStack() {
-        return this.parserStack.pop();
-    }
+    // Removes and returns the element at the the peek of the stack
+    private String popOutOfStack() { return this.parserStack.pop(); }
 
+    // Push an element at the top of the stack
     private void pushInStack(String string) {
         this.parserStack.push(string);
     }

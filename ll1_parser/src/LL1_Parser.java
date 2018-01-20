@@ -5,7 +5,7 @@ import java.util.Stack;
 
 public class LL1_Parser {
 
-    private String input = "";
+    private String input = "", leftAlignFormat;
     private int indexOfInput = -1;
 
     private Stack<String> parserStack;
@@ -29,6 +29,9 @@ public class LL1_Parser {
 
         // Initialize the stack
         parserStack = new Stack<String>();
+
+        leftAlignFormat = "| %-29s | %-24s | %-32s | %-29s |%n";
+
     }
 
     public void parsingAlgorithm() {
@@ -38,44 +41,43 @@ public class LL1_Parser {
         String token = this.read();
         String top = null, rule = null, productionStr = null, arrayElement = null;
 
-        String leftAlignFormat = "| %-29s | %-24s | %-32s | %-29s |%n";
         System.out.format("+-------------------------------+--------------------------+----------------------------------+-------------------------------+%n");
         System.out.format("| Stack                         | Input                    | Array Element                    | Production                    |%n");
         System.out.format("+-------------------------------+--------------------------+----------------------------------+-------------------------------+%n");
 
         do {
+
             top = this.peekOfStack();
 
             if (this.isTerminal(top)) {
 
                 if (top.equals(token) && !token.equals("$")) {
+                    this.printTableRow();
                     this.popOutOfStack();
                     token = this.read();
-                    top ="";
+
                 } else if (top.equals(token) && top.equals("$")) {
+
+                    this.printTableRow();
                     System.out.println("The string has been recognized!");
                     break;
+
                 }
             } else {
                 rule = this.getRuleFromArray(top, token);
                 if (!rule.equals("")) {
+
+                    this.printTableRow(top, rule, token);
                     this.popOutOfStack();
                     this.pushRuleInStack(rule);
+
                 } else {
+
+                    this.printTableRow(top, rule, token);
                     this.popOutOfStack();
+
                 }
             }
-
-            if (top.equals("")) {
-                productionStr = "";
-                arrayElement = "";
-            } else {
-                productionStr =  top + "-> " + rule;
-                arrayElement = "syntaxArray("+ top +", " + token + ") ";
-            }
-
-            System.out.format(leftAlignFormat, this.parserStack, this.input.substring(this.indexOfInput), arrayElement, productionStr);
-            System.out.format("+-------------------------------+--------------------------+----------------------------------+-------------------------------+%n");
 
         } while(true);
     }
@@ -126,6 +128,15 @@ public class LL1_Parser {
         return rule;
     }
 
+    private String returnRuleFromArray(String nonTerminal, String terminal) {
+        int arrayRow = this.getNonTermSymbolIndex(nonTerminal);
+        int arrayCol = this.getTermSymbolIndex(terminal);
+
+        String rule = this.syntaxArray[arrayRow][arrayCol];
+
+        return rule;
+    }
+
     // Get terminal symbol index
     private int getTermSymbolIndex(String inputString) {
         int i = 0;
@@ -155,6 +166,31 @@ public class LL1_Parser {
         this.errorLogger(inputString + " is terminal symbol");
         return -1;
     }
+
+    private void printTableRow() {
+        String stack = this.parserStack.toString()
+                .substring(0, this.parserStack.toString().length() - 1)
+                .substring(1)
+                .replace(",", "")
+                .replace(" ","");
+
+        System.out.format(leftAlignFormat, stack, this.input.substring(this.indexOfInput), "", "");
+        System.out.format("+-------------------------------+--------------------------+----------------------------------+-------------------------------+%n");
+    }
+    private void printTableRow(String top, String rule, String token){
+        String  productionStr =  top + "-> " + (rule.equals("") ? "ε" : rule),
+                arrayElement = "syntaxArray("+ top +", " + token + ") ",
+                stack = this.parserStack.toString()
+                        .substring(0, this.parserStack.toString().length() - 1)
+                        .substring(1)
+                        .replace(",", "")
+                        .replace(" ","");
+
+        System.out.format(this.leftAlignFormat, stack, this.input.substring(this.indexOfInput), arrayElement, productionStr);
+        System.out.format("+-------------------------------+--------------------------+----------------------------------+-------------------------------+%n");
+    }
+
+    //private void printTableRow(){}
 
     private String peekOfStack() {
         return this.parserStack.peek();
@@ -191,6 +227,7 @@ public class LL1_Parser {
             // Test following expression: [[y:x]+[x:y]]
             parser = new LL1_Parser("[[y:x]+[x:y]]$");
         } else {
+            // [[y+x]:y]
             System.out.println("Type a string");
             String userInput = sc.next();
             parser = new LL1_Parser(userInput + "$");

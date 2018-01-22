@@ -1,6 +1,6 @@
 import sys
 import re
-
+import os
 
 def main(args):
 
@@ -13,6 +13,11 @@ def main(args):
     # Store the file path
 
     filepath = args[1]
+
+    if not os.path.isfile(filepath):
+        print("File couldn't be found!")
+        sys.exit()
+
     print("Found: " + filepath)
 
     # Read the contents of the file

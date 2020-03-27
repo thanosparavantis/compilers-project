@@ -15,7 +15,7 @@ letters     [A-E]
 
 
 %%
-{verb}" "({triangle}|{corner})" "({letters}{3})$ {
+{verb}" "({triangle})" "({letters}{3})$ {
     logger(yytext);
 }
 

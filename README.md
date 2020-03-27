@@ -1,19 +1,20 @@
 # Compilers Project
+A group project that was developed for a university assignment on the subject of Compilers.
 
-## Status
-- Άσκηση 1 **OK**
-- Άσκηση 2 **OK**
-- Άσκηση 3 **ΟΚ**
-- Άσκηση 4 **OK!!!**
-  * i. **OK**
-  * ii. **OK**
-  * iii. **OK**
-- Άσκηση 5
+**Exercise 1**
+A python program that receives a source code file in C for input and checks the balance of parentheses using a push-down automaton.
 
-## Resources
-- Σημειώσεις διαλέξεων, Άγγελος Πικράκης
-- Μεταγλωττιστές - Μαρία Βίρβου, εκδόσεις Βαρμαρ
-- https://courses.engr.illinois.edu/cs373/fa2010/Lectures/notes21.pdf
-- https://www.youtube.com/watch?v=4ejIAmp_Atw
-- https://www.youtube.com/watch?v=JtRyd7Svlew
-- https://www.youtube.com/watch?v=eY7fwj5jvC4
+**Exercise 2**
+A python program that generates random character sequences step-by-step based on a specific grammar.
+
+**Exercise 3**
+A Java program that implements a top-down syntax analyzer based on a specific grammar.
+
+**Exercise 4**
+A lexical analyzer in Flex for variable declaration.
+
+**Exercise 5**
+A lexical analyzer in Flex for shape declaration in the form of written statements.
+
+**Group members involved in this project:**
+Ioannidis Panagiotis, Paravantis Athanasios

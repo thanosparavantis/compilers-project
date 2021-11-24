@@ -1,20 +1,5 @@
 # Compilers Project
-A group project that was developed for a university assignment on the subject of Compilers.
-
-**Exercise 1:**  
-A python program that receives a source code file in C for input and checks the balance of parentheses using a push-down automaton.
-
-**Exercise 2:**  
-A python program that generates random character sequences step-by-step based on a specific grammar.
-
-**Exercise 3:**  
-A Java program that implements a top-down syntax analyzer based on a specific grammar.
-
-**Exercise 4:**  
-A lexical analyzer in Flex for variable declaration.
-
-**Exercise 5:**  
-A lexical analyzer in Flex for shape declaration in the form of written statements.
+A programming project that was developed as a university assignment for the subject of Compilers. This project features three languages: C, Java and Python and the Flex lexical analyzer. We include: a Python solution for the balanced parentheses problem using a pushdown automaton, a Python program that generates random character sequences based on specific grammar, a Java program that implements a top-down syntax analyzer and two lexical analyzers in Flex for sample variable and geometric shape declaration.
 
 **Group members involved in this project:**  
 Ioannidis Panagiotis, Paravantis Athanasios

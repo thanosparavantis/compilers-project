@@ -5,4 +5,4 @@ A programming project that was developed as a university assignment for the subj
 Ioannidis Panagiotis, Paravantis Athanasios
 
 **Browse through related projects on thanosparavantis.com:**  
-https://www.thanosparavantis.com/projects/compilers
+https://thanos.dev/projects/compilers

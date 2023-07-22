@@ -4,5 +4,5 @@ A programming project that was developed as a university assignment for the subj
 **Group members involved in this project:**  
 Ioannidis Panagiotis, Paravantis Athanasios
 
-**Browse through related projects on thanosparavantis.com:**  
+**Browse through related projects on thanos.dev:**  
 https://thanos.dev/projects/compilers
